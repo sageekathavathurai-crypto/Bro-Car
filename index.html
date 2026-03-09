@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRO CARS — Drive Your Dream</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="image/logo2.png" alt="Bro Cars" onerror="this.style.display='none'">
+      <div class="logo-texts">
+        <span class="logo-brand">BRO CARS</span>
+        <span class="logo-tag">Drive Your Dream</span>
+      </div>
+    </a><ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="inventory.html">Inventory</a></li>
+      <li><a href="service.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" >Contact</a></li>
+    </ul>
+    <button class="hamburger" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="index.html">Home</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="service.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1920&q=80" alt="Car">
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow"><i class="fa-solid fa-star"></i> Premium Car Dealership</div>
+      <h1><span class="l1">DRIVE YOUR</span><span class="l2">DREAM</span></h1>
+      <p class="hero-desc">Discover the finest collection of new and pre-owned vehicles. Honest prices, verified cars, and exceptional service — right here in Jaffna.</p>
+      <div class="hero-btns">
+        <a href="inventory.html" class="btn btn-red btn-lg"><i class="fa-solid fa-car"></i> Explore Cars</a>
+        <a href="contact.html" class="btn btn-outline btn-lg">Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-arr"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-inner">
+      <div class="stat-item"><span class="stat-num" id="st-total">0</span><div class="stat-label">Cars Listed</div></div>
+      <div class="stat-item"><span class="stat-num" id="st-avail">0</span><div class="stat-label">Available</div></div>
+      <div class="stat-item"><span class="stat-num" id="st-sold">0</span><div class="stat-label">Sold</div></div>
+      <div class="stat-item"><span class="stat-num">100%</span><div class="stat-label">Satisfaction</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="sec" style="background:var(--white);">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Why Choose Us?</span>
+      <h2 class="sec-title">We Make Car Buying <span class="accent">Easy</span></h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><span class="fi">🛡️</span><div class="ft">Verified Cars</div><div class="fd">Every car is inspected and verified before listing.</div></div>
+      <div class="feature-card"><span class="fi">💰</span><div class="ft">Best Prices</div><div class="fd">Competitive pricing with transparent deals. No hidden charges.</div></div>
+      <div class="feature-card"><span class="fi">📋</span><div class="ft">Full Documentation</div><div class="fd">RC, insurance, and transfer handled smoothly.</div></div>
+      <div class="feature-card"><span class="fi">🤝</span><div class="ft">After-Sale Support</div><div class="fd">We are here for you even after you drive away.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURED CARS -->
+<div class="featured-sec">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow">Latest Arrivals</span>
+      <h2 class="sec-title">Featured <span class="accent">Cars</span></h2>
+    </div>
+    <div class="featured-grid" id="featuredGrid">
+      <div class="empty-state"><div class="ei">🚗</div><p>Loading...</p></div>
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="inventory.html" class="btn btn-outline-red btn-lg">View All Cars <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-sec">
+  <div class="container">
+    <h2>Ready to Find Your Dream Car?</h2>
+    <p>Browse our full inventory or get in touch today</p>
+    <div class="hero-btns" style="justify-content:center;">
+      <a href="inventory.html" class="btn btn-white btn-lg"><i class="fa-solid fa-car"></i> Browse Inventory</a>
+      <a href="contact.html" class="btn btn-lg" style="background:transparent;color:#fff;border:2px solid rgba(255,255,255,.6);">Get in Touch</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img class="footer-logo" src="image/logo2.png" alt="Bro Cars" onerror="this.style.display='none'">
+        <span class="footer-brand-name">BRO CARS</span>
+        <span class="footer-tag">Drive Your Dream</span>
+        <p class="footer-about">Your trusted destination for new and pre-owned vehicles in Jaffna.</p>
+        <div class="footer-social">
+          <a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="inventory.html">Inventory</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Our Services</div>
+        <ul>
+          <li><a href="service.html">Buy a Car</a></li>
+          <li><a href="service.html">Sell Your Car</a></li>
+          <li><a href="service.html">Car Inspection</a></li>
+          <li><a href="service.html">RC Transfer</a></li>
+          <li><a href="service.html">Car Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+77 123 4321"><i class="fa-solid fa-phone" style="color:var(--red);width:16px;margin-right:6px"></i>+77 123 4321</a></li>
+          <li><a href="https://wa.me/+77 123 4321" target="_blank"><i class="fa-brands fa-whatsapp" style="color:#25d366;width:16px;margin-right:6px"></i>WhatsApp</a></li>
+          <li><a href="mailto:info@brocars.in"><i class="fa-solid fa-envelope" style="color:var(--red);width:16px;margin-right:6px"></i>info@brocars.in</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot" style="color:var(--red);width:16px;margin-right:6px"></i>No 953 Thaddaratheru Junction Jaffna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="yr"></span> Bro Cars. All rights reserved.</p>
+      <p>Built with &#10084;&#65039; for WEBbuilders.LK</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- SCRIPTS: cars.js must load first -->
+<script src="cars.js"></script>
+<script src="app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Stats
+  document.getElementById('st-total').textContent = CARS.length;
+  document.getElementById('st-avail').textContent = CARS.filter(function(c){ return c.status === 'available'; }).length;
+  document.getElementById('st-sold').textContent  = CARS.filter(function(c){ return c.status === 'sold'; }).length;
+
+  // Featured: available first, max 6
+  var featured = CARS.slice().sort(function(a, b){
+    return (a.status === 'available' ? 0 : 1) - (b.status === 'available' ? 0 : 1);
+  }).slice(0, 6);
+
+  var grid = document.getElementById('featuredGrid');
+  if (!featured.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="ei">🚗</div><p>No cars yet</p></div>';
+    return;
+  }
+  grid.innerHTML = featured.map(function(car, i) { return makeCard(car, i); }).join('');
+});
+
+function makeCard(car, i) {
+  var isSold = car.status === 'sold';
+  var isNew  = car.cond === 'new';
+  var price  = formatPrice(car.price);
+  var waText = 'Hi Bro Cars! I am interested in the ' + car.brand + ' ' + car.name + ' (' + car.year + '). Please share more details.';
+  var waLink = 'https://wa.me/+77 123 4321?text=' + encodeURIComponent(waText);
+
+  var specs = '';
+  if (car.km)    specs += '<span class="spec"><i class="fa-solid fa-gauge-high"></i>' + car.km    + '</span>';
+  if (car.trans) specs += '<span class="spec"><i class="fa-solid fa-gear"></i>'       + car.trans + '</span>';
+  if (car.fuel)  specs += '<span class="spec"><i class="fa-solid fa-gas-pump"></i>'   + car.fuel  + '</span>';
+  if (car.color) specs += '<span class="spec"><i class="fa-solid fa-palette"></i>'    + car.color + '</span>';
+
+  var imgHtml = car.img
+    ? '<img src="' + car.img + '" alt="' + car.brand + '" loading="lazy" onerror="this.style.display=\'none\'">'
+    : '<div class="car-no-img">🚘</div>';
+
+  var overlay = isSold ? '<div class="sold-overlay"><span>SOLD</span></div>' : '';
+
+  var statusBadge = isSold
+    ? '<div class="status-badge status-sold"><i class="fa-solid fa-circle-xmark"></i> SOLD</div>'
+    : '<div class="status-badge status-available"><i class="fa-solid fa-circle-check"></i> AVAILABLE</div>';
+
+  var actionBtn = isSold
+    ? '<span style="font-size:.72rem;color:#aaa;font-family:var(--font-ui);letter-spacing:1px;">NOT AVAILABLE</span>'
+    : '<a href="' + waLink + '" target="_blank" class="btn btn-outline-red btn-sm"><i class="fa-brands fa-whatsapp"></i> Enquire</a>';
+
+  var priceHtml = isSold
+    ? '<span style="color:#999;font-size:.95rem;">SOLD</span>'
+    : price;
+
+  return '<div class="car-card' + (isSold ? ' card-sold' : '') + '" style="animation-delay:' + (i * 0.07) + 's">'
+    + '<div class="car-img-wrap">' + imgHtml + overlay
+    + '<div class="year-badge">' + (car.year || '') + '</div>'
+    + '<div class="cond-badge ' + (isNew ? 'b-new' : 'b-used') + '">' + (isNew ? 'NEW' : 'USED') + '</div>'
+    + '</div>'
+    + '<div class="car-body">'
+    + statusBadge
+    + '<div class="car-heading"><span class="car-make">' + car.brand + '</span><span class="car-model">' + car.name + '</span></div>'
+    + '<div class="car-specs">' + specs + '</div>'
+    + '<div class="car-footer"><div>'
+    + '<div class="car-price">' + priceHtml + '</div>'
+    + (!isSold ? '<div class="price-note">Negotiable</div>' : '')
+    + '</div>' + actionBtn
+    + '</div></div></div>';
+}
+
+function formatPrice(p) {
+  if (!p) return 'Price on Request';
+  var n = Number(p);
+  if (n >= 10000000) return '&#8377;' + (n / 10000000).toFixed(2) + ' Cr';
+  if (n >= 100000)   return '&#8377;' + (n / 100000).toFixed(2) + ' L';
+  return '&#8377;' + n.toLocaleString('en-IN');
+}
+</script>
+</body>
+</html>

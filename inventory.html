@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory — BRO CARS</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .inv-tabs { display:flex; background:var(--white); padding:0 2rem; max-width:1340px; margin:0 auto; }
+    .inv-tab {
+      font-family:var(--font-h); font-size:.72rem; font-weight:700;
+      letter-spacing:2px; text-transform:uppercase;
+      padding:1.1rem 2rem; cursor:pointer;
+      border:none; border-bottom:3px solid transparent; margin-bottom:-2px;
+      background:none; color:var(--text4);
+      display:flex; align-items:center; 
+      transition:color .25s, border-color .25s;
+    }
+    .inv-tab:hover { color:var(--text); }
+    .inv-tab.active { color:var(--red); border-bottom-color:var(--red); }
+    .tab-count {
+      font-family:var(--font-h); font-size:.6rem; font-weight:700;
+      padding:2px 8px; border-radius:50px; letter-spacing:1px;
+    }
+    .inv-tab.active .tab-count      { background:var(--red); color:#fff; }
+    .inv-tab:not(.active) .tab-count { background:var(--bg3); color:var(--text4); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="index.html">
+      <img src="image/logo2.png" alt="Bro Cars" onerror="this.style.display='none'">
+      <div class="logo-texts">
+        <span class="logo-brand">BRO CARS</span>
+        <span class="logo-tag">Drive Your Dream</span>
+      </div>
+    </a><ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="inventory.html" class="active">Inventory</a></li>
+      <li><a href="service.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" >Contact</a></li>
+    </ul>
+    <button class="hamburger" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-nav" id="mobNav">
+  <a href="index.html">Home</a>
+  <a href="inventory.html">Inventory</a>
+  <a href="service.html">Services</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<div style="padding-top:72px;">
+
+  <div class="page-hero">
+    <h1>Car Inventory</h1>
+    <p>Find Your Perfect Match</p>
+  </div>
+
+  <!-- TABS -->
+  <div style="background:var(--white);border-bottom:2px solid var(--border);position:sticky;top:72px;z-index:200;box-shadow:var(--shadow);">
+    <div class="inv-tabs">
+      <button class="inv-tab active" id="tab-available" onclick="switchTab('available')">
+        <i class="fa-solid fa-circle-check" style="color:#2e7d32"></i>
+        Available
+        <span class="tab-count" id="cnt-available">0</span>
+      </button>
+      <button class="inv-tab" id="tab-sold" onclick="switchTab('sold')">
+        <i class="fa-solid fa-circle-xmark" style="color:var(--red)"></i>
+        Sold
+        <span class="tab-count" id="cnt-sold">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- FILTERS -->
+  <div class="filter-bar">
+    <div class="filter-row">
+      <input type="text" id="f-search" placeholder="🔍  Search brand, model..." oninput="renderInv()">
+      <select id="f-cond" onchange="renderInv()">
+        <option value="">All Conditions</option>
+        <option value="new">New</option>
+        <option value="used">Used</option>
+      </select>
+      <select id="f-fuel" onchange="renderInv()">
+        <option value="">All Fuel Types</option>
+        <option>Petrol</option><option>Diesel</option><option>Electric</option><option>Hybrid</option><option>CNG</option>
+      </select>
+      <select id="f-trans" onchange="renderInv()">
+        <option value="">All Transmission</option>
+        <option>Manual</option><option>Automatic</option><option>AMT</option><option>CVT</option><option>DCT</option>
+      </select>
+      <select id="f-sort" onchange="renderInv()">
+        <option value="newest">Newest First</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="year">Year: Newest</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- GRID -->
+  <div class="container inv-main">
+    <div class="inv-top">
+      <span class="inv-label" id="inv-label">Available Vehicles</span>
+      <span class="inv-count" id="inv-count">0 cars</span>
+    </div>
+    <div class="cars-grid" id="invGrid">
+      <div class="empty-state"><div class="ei">🚗</div><p>Loading...</p></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <img class="footer-logo" src="image/logo2.png" alt="Bro Cars" onerror="this.style.display='none'">
+        <span class="footer-brand-name">BRO CARS</span>
+        <span class="footer-tag">Drive Your Dream</span>
+        <p class="footer-about">Your trusted destination for new and pre-owned vehicles in Jaffna.</p>
+        <div class="footer-social">
+          <a href="#" class="soc-btn"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" class="soc-btn"><i class="fa-brands fa-facebook-f"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Quick Links</div>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="inventory.html">Inventory</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Our Services</div>
+        <ul>
+          <li><a href="service.html">Buy a Car</a></li>
+          <li><a href="service.html">Sell Your Car</a></li>
+          <li><a href="service.html">Car Inspection</a></li>
+          <li><a href="service.html">RC Transfer</a></li>
+          <li><a href="service.html">Car Insurance</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Contact</div>
+        <ul>
+          <li><a href="tel:+77 123 4321"><i class="fa-solid fa-phone" style="color:var(--red);width:16px;margin-right:6px"></i>+77 123 4321</a></li>
+          <li><a href="https://wa.me/+77 123 4321" target="_blank"><i class="fa-brands fa-whatsapp" style="color:#25d366;width:16px;margin-right:6px"></i>WhatsApp</a></li>
+          <li><a href="mailto:info@brocars.in"><i class="fa-solid fa-envelope" style="color:var(--red);width:16px;margin-right:6px"></i>info@brocars.in</a></li>
+          <li><a href="#"><i class="fa-solid fa-location-dot" style="color:var(--red);width:16px;margin-right:6px"></i>No 953 Thaddaratheru Junction Jaffna</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; <span id="yr"></span> Bro Cars. All rights reserved.</p>
+      <p>Built with &#10084;&#65039; for WEBbuilders.LK</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fa-solid fa-chevron-up"></i></button>
+
+<!-- SCRIPTS: cars.js loads first so CARS array is ready -->
+<script src="cars.js"></script>
+<script src="app.js"></script>
+<script>
+var activeTab = 'available';
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.inv-tab').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('inv-label').textContent = tab === 'available' ? 'Available Vehicles' : 'Sold Vehicles';
+  renderInv();
+}
+
+function renderInv() {
+  var search = (document.getElementById('f-search').value || '').toLowerCase();
+  var cond   =  document.getElementById('f-cond').value   || '';
+  var fuel   =  document.getElementById('f-fuel').value   || '';
+  var trans  =  document.getElementById('f-trans').value  || '';
+  var sort   =  document.getElementById('f-sort').value   || 'newest';
+
+  // Update tab counts
+  document.getElementById('cnt-available').textContent = CARS.filter(function(c){ return c.status === 'available'; }).length;
+  document.getElementById('cnt-sold').textContent      = CARS.filter(function(c){ return c.status === 'sold'; }).length;
+
+  // Filter by tab + filters
+  var list = CARS.filter(function(c) {
+    return c.status === activeTab
+      && (!search || (c.brand + ' ' + c.name).toLowerCase().indexOf(search) !== -1)
+      && (!cond   || c.cond  === cond)
+      && (!fuel   || c.fuel  === fuel)
+      && (!trans  || c.trans === trans);
+  });
+
+  // Sort
+  if      (sort === 'price-low')  list.sort(function(a,b){ return Number(a.price) - Number(b.price); });
+  else if (sort === 'price-high') list.sort(function(a,b){ return Number(b.price) - Number(a.price); });
+  else if (sort === 'year')       list.sort(function(a,b){ return Number(b.year)  - Number(a.year);  });
+  else                            list.sort(function(a,b){ return b.id - a.id; });
+
+  document.getElementById('inv-count').textContent = list.length + ' car' + (list.length !== 1 ? 's' : '');
+
+  var grid = document.getElementById('invGrid');
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty-state"><div class="ei">' + (activeTab === 'sold' ? '🏷️' : '🚗') + '</div><p>'
+      + (activeTab === 'sold' ? 'No sold cars yet.' : 'No available cars right now.') + '</p></div>';
+    return;
+  }
+  grid.innerHTML = list.map(function(car, i){ return makeCard(car, i); }).join('');
+}
+
+function makeCard(car, i) {
+  var isSold = car.status === 'sold';
+  var isNew  = car.cond   === 'new';
+  var price  = formatPrice(car.price);
+  var waText = 'Hi Bro Cars! I am interested in the ' + car.brand + ' ' + car.name + ' (' + car.year + '). Please share more details.';
+  var waLink = 'https://wa.me/919876543210?text=' + encodeURIComponent(waText);
+
+  var specs = '';
+  if (car.km)    specs += '<span class="spec"><i class="fa-solid fa-gauge-high"></i>' + car.km    + '</span>';
+  if (car.trans) specs += '<span class="spec"><i class="fa-solid fa-gear"></i>'       + car.trans + '</span>';
+  if (car.fuel)  specs += '<span class="spec"><i class="fa-solid fa-gas-pump"></i>'   + car.fuel  + '</span>';
+  if (car.color) specs += '<span class="spec"><i class="fa-solid fa-palette"></i>'    + car.color + '</span>';
+
+  var desc = car.desc ? '<p style="font-size:.8rem;color:var(--text4);line-height:1.6;margin-bottom:.7rem;">'
+    + car.desc.substring(0, 85) + (car.desc.length > 85 ? '...' : '') + '</p>' : '';
+
+  var imgHtml = car.img
+    ? '<img src="' + car.img + '" alt="' + car.brand + '" loading="lazy" onerror="this.style.display=\'none\'">'
+    : '<div class="car-no-img">🚘</div>';
+
+  var overlay     = isSold ? '<div class="sold-overlay"><span>SOLD</span></div>' : '';
+  var statusBadge = isSold
+    ? '<div class="status-badge status-sold"><i class="fa-solid fa-circle-xmark"></i> SOLD</div>'
+    : '<div class="status-badge status-available"><i class="fa-solid fa-circle-check"></i> AVAILABLE</div>';
+  var actionBtn   = isSold
+    ? '<span style="font-size:.72rem;color:#aaa;font-family:var(--font-ui);letter-spacing:1px;">NOT AVAILABLE</span>'
+    : '<a href="' + waLink + '" target="_blank" class="btn btn-outline-red btn-sm"><i class="fa-brands fa-whatsapp"></i> Enquire</a>';
+
+  return '<div class="car-card' + (isSold ? ' card-sold' : '') + '" style="animation-delay:' + (i * 0.05) + 's">'
+    + '<div class="car-img-wrap">' + imgHtml + overlay
+    + '<div class="year-badge">' + (car.year || '') + '</div>'
+    + '<div class="cond-badge ' + (isNew ? 'b-new' : 'b-used') + '">' + (isNew ? 'NEW' : 'USED') + '</div>'
+    + '</div>'
+    + '<div class="car-body">' + statusBadge
+    + '<div class="car-heading"><span class="car-make">' + car.brand + '</span><span class="car-model">' + car.name + '</span></div>'
+    + desc
+    + '<div class="car-specs">' + specs + '</div>'
+    + '<div class="car-footer"><div>'
+    + '<div class="car-price">' + (isSold ? '<span style="color:#999;">SOLD</span>' : price) + '</div>'
+    + (!isSold ? '<div class="price-note">Negotiable</div>' : '')
+    + '</div>' + actionBtn
+    + '</div></div></div>';
+}
+
+function formatPrice(p) {
+  if (!p) return 'Price on Request';
+  var n = Number(p);
+  if (n >= 10000000) return '&#8377;' + (n / 10000000).toFixed(2) + ' Cr';
+  if (n >= 100000)   return '&#8377;' + (n / 100000).toFixed(2) + ' L';
+  return '&#8377;' + n.toLocaleString('en-IN');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  renderInv();
+});
+</script>
+</body>
+</html>
